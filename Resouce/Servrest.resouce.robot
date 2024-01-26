@@ -3,10 +3,9 @@ Library     RequestsLibrary
 Library     Collections
 Library     String
 
-
 *** Keywords ***
 Quando o email do usuário é criado
-    ${email}    Generate Random String    length=4    chars=letter
+    ${email}    Generate Random String    length=4    chars=letters
     ${email}    Convert To Lower Case    ${email}
     Set Test Variable    ${EMAIL}    ${email}@teste.com.br
     Log    ${EMAIL}
@@ -18,11 +17,10 @@ E então o usuário é criado na Servrest
     ...    password=1243     
     ...    administrador=true
     Log    ${body}
-    Momento em que crio seçao na Servrest
+    Criar usuário na Servrest
     ${resposta}    POST On Session    alias=Servrest    url=/usuarios    json=${body}
     Log    ${resposta.json()}
 
-Momento em que crio seçao na Servrest
+Momento em que crio seção na Servrest
     ${headers}    Create Dictionary    accept=application/json    Content-Type=application/json
     Create Session    Servrest    https://serverest.dev    ${headers}
-
